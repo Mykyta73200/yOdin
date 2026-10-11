@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "sau",
+    "continueWithMicrosoft": "Continuă cu Microsoft",
+    "providerTermsNotice": "Dacă continui cu Microsoft, accepți termenii de utilizare și politica de confidențialitate.",
     "welcome": "Bun venit la yOdin",
     "subtitle": "Conectează-te între culturi",
     "login": "Autentificare",
@@ -154,6 +157,9 @@
     "daysAgo": "acum {{count}} zile"
   },
   "errors": {
+    "microsoftEmailExists": "Acest e-mail este deja înregistrat. Conectează-te cu parola ta.",
+    "microsoftEmailUnverified": "Microsoft nu a confirmat adresa de e-mail a acestui cont, deci nu poate fi folosită pentru conectare.",
+    "microsoftFailed": "Conectarea cu Microsoft nu a reușit. Încearcă din nou.",
     "generic": "Ceva a mers greșit. Te rugăm să încerci din nou.",
     "emailAlreadyInUse": "Acest e-mail este deja înregistrat.",
     "invalidEmail": "Adresă de e-mail invalidă.",

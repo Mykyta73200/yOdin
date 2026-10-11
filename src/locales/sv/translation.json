@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "eller",
+    "continueWithMicrosoft": "Fortsätt med Microsoft",
+    "providerTermsNotice": "Genom att fortsätta med Microsoft godkänner du användarvillkoren och integritetspolicyn.",
     "welcome": "Välkommen till yOdin",
     "subtitle": "Koppla samman kulturer",
     "login": "Logga in",
@@ -153,6 +156,9 @@
     "daysAgo": "för {{count}} dagar sedan"
   },
   "errors": {
+    "microsoftEmailExists": "Den här e-postadressen är redan registrerad. Logga in med ditt lösenord.",
+    "microsoftEmailUnverified": "Microsoft bekräftade inte e-postadressen för det här kontot, så den kan inte användas för att logga in.",
+    "microsoftFailed": "Inloggningen med Microsoft gick inte igenom. Försök igen.",
     "generic": "Något gick fel. Försök igen.",
     "emailAlreadyInUse": "Den här e-postadressen är redan registrerad.",
     "invalidEmail": "Ogiltig e-postadress.",

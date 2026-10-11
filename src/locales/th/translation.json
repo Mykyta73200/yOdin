@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "หรือ",
+    "continueWithMicrosoft": "ดำเนินการต่อด้วย Microsoft",
+    "providerTermsNotice": "การดำเนินการต่อด้วย Microsoft ถือว่าคุณยอมรับเงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว",
     "welcome": "ยินดีต้อนรับสู่ yOdin",
     "subtitle": "เชื่อมต่อข้ามวัฒนธรรม",
     "login": "เข้าสู่ระบบ",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} วันที่แล้ว"
   },
   "errors": {
+    "microsoftEmailExists": "อีเมลนี้ลงทะเบียนไว้แล้ว กรุณาเข้าสู่ระบบด้วยรหัสผ่านของคุณ",
+    "microsoftEmailUnverified": "Microsoft ไม่ได้ยืนยันที่อยู่อีเมลของบัญชีนี้ จึงใช้เข้าสู่ระบบไม่ได้",
+    "microsoftFailed": "เข้าสู่ระบบด้วย Microsoft ไม่สำเร็จ กรุณาลองอีกครั้ง",
     "generic": "เกิดข้อผิดพลาด กรุณาลองอีกครั้ง",
     "emailAlreadyInUse": "อีเมลนี้ถูกลงทะเบียนแล้ว",
     "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",

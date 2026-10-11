@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "atau",
+    "continueWithMicrosoft": "Lanjutkan dengan Microsoft",
+    "providerTermsNotice": "Dengan melanjutkan menggunakan Microsoft, kamu menyetujui ketentuan penggunaan dan kebijakan privasi.",
     "welcome": "Selamat datang di yOdin",
     "subtitle": "Terhubung lintas budaya",
     "login": "Masuk",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} hari lalu"
   },
   "errors": {
+    "microsoftEmailExists": "Email ini sudah terdaftar. Masuk dengan kata sandimu.",
+    "microsoftEmailUnverified": "Microsoft tidak mengonfirmasi alamat email akun ini, jadi tidak bisa dipakai untuk masuk.",
+    "microsoftFailed": "Masuk dengan Microsoft tidak berhasil. Coba lagi.",
     "generic": "Terjadi kesalahan. Silakan coba lagi.",
     "emailAlreadyInUse": "Email ini sudah terdaftar.",
     "invalidEmail": "Alamat email tidak valid.",

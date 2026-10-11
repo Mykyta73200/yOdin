@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "veya",
+    "continueWithMicrosoft": "Microsoft ile devam et",
+    "providerTermsNotice": "Microsoft ile devam ederek kullanım koşullarını ve gizlilik politikasını kabul etmiş olursun.",
     "welcome": "yOdin'e Hoş Geldiniz",
     "subtitle": "Kültürler arası bağlantı",
     "login": "Giriş Yap",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} gün önce"
   },
   "errors": {
+    "microsoftEmailExists": "Bu e-posta zaten kayıtlı. Şifrenle giriş yap.",
+    "microsoftEmailUnverified": "Microsoft bu hesabın e-posta adresini doğrulamadı, bu yüzden girişte kullanılamaz.",
+    "microsoftFailed": "Microsoft ile giriş yapılamadı. Tekrar dene.",
     "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
     "emailAlreadyInUse": "Bu e-posta zaten kayıtlı.",
     "invalidEmail": "Geçersiz e-posta adresi.",

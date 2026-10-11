@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "или",
+    "continueWithMicrosoft": "Продолжить с Microsoft",
+    "providerTermsNotice": "Продолжая через Microsoft, вы принимаете условия использования и политику конфиденциальности.",
     "welcome": "Добро пожаловать в yOdin",
     "subtitle": "Связывайтесь через культуры",
     "login": "Войти",
@@ -154,6 +157,9 @@
     "daysAgo": "{{count}} д. назад"
   },
   "errors": {
+    "microsoftEmailExists": "Этот адрес уже зарегистрирован. Войдите по паролю.",
+    "microsoftEmailUnverified": "Microsoft не подтвердила адрес почты этого аккаунта, поэтому войти через него нельзя.",
+    "microsoftFailed": "Войти через Microsoft не удалось. Попробуйте ещё раз.",
     "generic": "Что-то пошло не так. Попробуйте снова.",
     "emailAlreadyInUse": "Этот email уже зарегистрирован.",
     "invalidEmail": "Неверный адрес email.",

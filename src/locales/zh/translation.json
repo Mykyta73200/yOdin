@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "或",
+    "continueWithMicrosoft": "使用 Microsoft 继续",
+    "providerTermsNotice": "继续使用 Microsoft 即表示你接受使用条款和隐私政策。",
     "welcome": "欢迎来到 yOdin",
     "subtitle": "跨文化连接",
     "login": "登录",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} 天前"
   },
   "errors": {
+    "microsoftEmailExists": "该邮箱已注册，请使用密码登录。",
+    "microsoftEmailUnverified": "Microsoft 未确认此账号的邮箱地址，因此无法用它登录。",
+    "microsoftFailed": "使用 Microsoft 登录未成功，请重试。",
     "generic": "出错了，请重试。",
     "emailAlreadyInUse": "该邮箱已被注册。",
     "invalidEmail": "邮箱地址无效。",

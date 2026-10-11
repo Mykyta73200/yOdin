@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "hoặc",
+    "continueWithMicrosoft": "Tiếp tục với Microsoft",
+    "providerTermsNotice": "Khi tiếp tục với Microsoft, bạn đồng ý với điều khoản sử dụng và chính sách bảo mật.",
     "welcome": "Chào mừng đến với yOdin",
     "subtitle": "Kết nối qua các nền văn hóa",
     "login": "Đăng nhập",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} ngày trước"
   },
   "errors": {
+    "microsoftEmailExists": "Email này đã được đăng ký. Hãy đăng nhập bằng mật khẩu của bạn.",
+    "microsoftEmailUnverified": "Microsoft không xác nhận địa chỉ email của tài khoản này, nên không thể dùng để đăng nhập.",
+    "microsoftFailed": "Đăng nhập bằng Microsoft không thành công. Vui lòng thử lại.",
     "generic": "Đã xảy ra lỗi. Vui lòng thử lại.",
     "emailAlreadyInUse": "Email này đã được đăng ký.",
     "invalidEmail": "Địa chỉ email không hợp lệ.",

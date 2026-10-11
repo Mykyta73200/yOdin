@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "অথবা",
+    "continueWithMicrosoft": "Microsoft দিয়ে চালিয়ে যান",
+    "providerTermsNotice": "Microsoft দিয়ে চালিয়ে গেলে আপনি ব্যবহারের শর্তাবলি ও গোপনীয়তা নীতিতে সম্মত হচ্ছেন।",
     "welcome": "yOdin-এ স্বাগতম",
     "subtitle": "সংস্কৃতির সেতুবন্ধন করুন",
     "login": "লগ ইন",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} দিন আগে"
   },
   "errors": {
+    "microsoftEmailExists": "এই ইমেলটি ইতিমধ্যে নিবন্ধিত। আপনার পাসওয়ার্ড দিয়ে লগ ইন করুন।",
+    "microsoftEmailUnverified": "Microsoft এই অ্যাকাউন্টের ইমেল ঠিকানা নিশ্চিত করেনি, তাই এটি দিয়ে সাইন ইন করা যাবে না।",
+    "microsoftFailed": "Microsoft দিয়ে সাইন ইন সম্পন্ন হয়নি। আবার চেষ্টা করুন।",
     "generic": "কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।",
     "emailAlreadyInUse": "এই ইমেইলটি ইতিমধ্যে নিবন্ধিত।",
     "invalidEmail": "অবৈধ ইমেইল ঠিকানা।",

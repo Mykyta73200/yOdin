@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "または",
+    "continueWithMicrosoft": "Microsoft で続ける",
+    "providerTermsNotice": "Microsoft で続けると、利用規約とプライバシーポリシーに同意したことになります。",
     "welcome": "yOdinへようこそ",
     "subtitle": "文化を超えてつながろう",
     "login": "ログイン",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}}日前"
   },
   "errors": {
+    "microsoftEmailExists": "このメールアドレスは既に登録されています。パスワードでログインしてください。",
+    "microsoftEmailUnverified": "Microsoft がこのアカウントのメールアドレスを確認できなかったため、サインインには使用できません。",
+    "microsoftFailed": "Microsoft でのサインインに失敗しました。もう一度お試しください。",
     "generic": "エラーが発生しました。もう一度お試しください。",
     "emailAlreadyInUse": "このメールアドレスはすでに登録されています。",
     "invalidEmail": "無効なメールアドレスです。",

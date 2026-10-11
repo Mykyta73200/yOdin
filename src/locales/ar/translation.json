@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "أو",
+    "continueWithMicrosoft": "المتابعة باستخدام Microsoft",
+    "providerTermsNotice": "بالمتابعة باستخدام Microsoft فإنك توافق على شروط الاستخدام وسياسة الخصوصية.",
     "welcome": "مرحباً بك في yOdin",
     "subtitle": "تواصل عبر الثقافات",
     "login": "تسجيل الدخول",
@@ -157,6 +160,9 @@
     "daysAgo": "منذ {{count}} ي"
   },
   "errors": {
+    "microsoftEmailExists": "هذا البريد الإلكتروني مسجَّل بالفعل. سجِّل الدخول بكلمة المرور الخاصة بك.",
+    "microsoftEmailUnverified": "لم تؤكّد Microsoft عنوان البريد الإلكتروني لهذا الحساب، لذا لا يمكن استخدامه لتسجيل الدخول.",
+    "microsoftFailed": "لم يكتمل تسجيل الدخول باستخدام Microsoft. حاول مرة أخرى.",
     "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
     "emailAlreadyInUse": "هذا البريد الإلكتروني مسجّل بالفعل.",
     "invalidEmail": "عنوان البريد الإلكتروني غير صالح.",

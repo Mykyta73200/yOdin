@@ -126,6 +126,10 @@ App
   truth for reading a user), profile update, password reset, resend
   verification, `deleteOwnAccount` (§9). Email is **not** stored in Firestore
   (lives in Auth only).
+- `microsoftAuth.ts` — the whole Microsoft OAuth flow (code + PKCE via
+  `expo-auth-session`), ending in `signInWithCustomToken`. Separate from
+  `authService.ts` because it talks to a non-Firebase identity provider; see
+  §10 for why the exchange cannot happen on the client.
 - `postService.ts` / `discussionService.ts` — CRUD + queries + votes/saves +
   event RSVP (`joinEvent` is a transaction so the cap can't be raced).
 - `storageService.ts` — image/video/poster/avatar uploads + `deleteStorageFolder`
@@ -374,13 +378,15 @@ served as raw text.
 - `posts/{postId}/…` and `discussions/{discussionId}/…` — image <5 MB **or**
   video <20 MB.
 
-### Cloud Functions — 15, all in `europe-west1`
+### Cloud Functions — 16, all in `europe-west1`
 `index.ts` holds the 11 content triggers: Algolia create/update/delete sync;
 feedScore seeding & recompute; comment/reply counters; `engagement` maintenance;
 points award on accepted answer; `onReportUpdated` moderation pipeline.
-`accountDeletion.ts` adds `deleteAccount` + `onUserProfileCreated`, and
-`blocking.ts` adds `onBlockCreated` + `onBlockDeleted` (§9). Secrets (Algolia
-Write key, `EMAIL_HASH_KEY`) live in Secret Manager, never on the client.
+`accountDeletion.ts` adds `deleteAccount` + `onUserProfileCreated`,
+`blocking.ts` adds `onBlockCreated` + `onBlockDeleted` (§9), and
+`microsoftAuth.ts` adds the `microsoftSignIn` callable (below). Secrets (Algolia
+Write key, `EMAIL_HASH_KEY`, `MICROSOFT_CLIENT_ID`) live in Secret Manager,
+never on the client.
 
 > **Region trap.** `setGlobalOptions({ region })` is a call in the *body* of
 > `index.ts`, while modules it imports at the top define their functions first —
@@ -393,6 +399,61 @@ Write key, `EMAIL_HASH_KEY`) live in Secret Manager, never on the client.
 > only the roles someone granted by hand — not Editor. It needed
 > `roles/datastore.user` once (silent trigger failures for months) and
 > `roles/firebaseauth.admin` for deletion. A new capability may well need another.
+> `createCustomToken` is the next one: with no service-account key file on disk
+> the Admin SDK signs through the IAM `signBlob` API, so the runtime account
+> needs **`roles/iam.serviceAccountTokenCreator` on itself** or Microsoft
+> sign-in fails at the last step with a permission error.
+
+### Microsoft sign-in
+
+Firebase Auth's own `microsoft.com` provider is unreachable from this app: its
+server refuses a token obtained elsewhere (it cannot verify the audience, which
+would allow replay across projects), and the JS SDK only offers
+`signInWithPopup`/`signInWithRedirect`, both web-only. So the app runs the OAuth
+code+PKCE flow itself and `microsoftSignIn` exchanges the resulting `id_token`
+for a Firebase custom token. Firebase documents custom auth as a first-class
+mechanism; this is not a workaround.
+
+Why not the alternatives: `@react-native-firebase` has a native flow but would
+rewrite every Firebase call and end Expo Go; a generic OIDC provider needs
+Identity Platform **and** cannot work at all here — its config takes a single
+issuer, while an Entra work-account `iss` is per-tenant, so "all organizations"
+is unrepresentable. An Entra External ID / B2C tenant in front would restore a
+constant issuer at the cost of a whole extra Azure product.
+
+The Azure registration is multitenant (any organization + personal accounts) and
+a **public client with no secret** — anything inside an APK can be unpacked, so
+PKCE takes the secret's place. Consequences baked into the code:
+
+- **Issuer and signing keys are derived from the token's own `tid`**, never
+  constants. `tid` and `oid` are regex-checked as GUIDs first, since `tid` is
+  interpolated into the JWKS URL.
+- **Identity is `ms:{tid}:{oid}`.** Microsoft's docs say the `email` claim is
+  mutable and "isn't guaranteed to be correct", so it is never an identity key.
+- **Accounts are never merged by email.** A tenant admin can put any address on
+  an account they control with no cross-tenant check (nOAuth, Descope 2023), so
+  a collision returns `email-exists` and the user is told to use their password.
+- **`xms_edov` ("does the tenant own this domain") is a string `"1"`/`"0"`**, so
+  `=== true` silently fails. Personal accounts (tenant
+  `9188040d-6c67-4c5b-b112-36a304b66dad`) are exempt — Microsoft verifies those
+  itself.
+- **The Auth user is created with `emailVerified: true`.** The Firestore rules
+  gate every write on `request.auth.token.email_verified`; without it the user
+  signs in and then silently cannot post or comment.
+- **The profile doc is written server-side** (`ensureProfile`), because a
+  provider sign-in skips `RegisterScreen` and the rules reject a `users/{uid}`
+  create that omits `points == 0`. It also claims a generated handle and records
+  `acceptedTermsAt`/`acceptedTermsVersion` — the clickwrap notice sits directly
+  above the button, so the tap is the consent (GDPR Art. 7(1)).
+- **`app.json` carries `scheme: "app.yodin"`** for the redirect
+  `app.yodin://auth/microsoft`. Native config: Expo Go cannot run this flow at
+  all (the `auth.expo.io` proxy went away in SDK 48), so it needs a dev build or
+  an APK.
+- Some tenants block multitenant apps or require admin consent. Those users see
+  "Need admin approval" and cannot sign in. That is Entra policy, not a bug.
+
+⚠️ On iOS, App Store rule **4.8** triggers on the first third-party login
+provider: shipping this there also requires Sign in with Apple.
 
 ---
 

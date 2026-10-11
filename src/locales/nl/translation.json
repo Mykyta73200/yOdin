@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "of",
+    "continueWithMicrosoft": "Doorgaan met Microsoft",
+    "providerTermsNotice": "Als je doorgaat met Microsoft, accepteer je de gebruiksvoorwaarden en het privacybeleid.",
     "welcome": "Welkom bij yOdin",
     "subtitle": "Verbind je over culturen heen",
     "login": "Inloggen",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} dagen geleden"
   },
   "errors": {
+    "microsoftEmailExists": "Dit e-mailadres is al geregistreerd. Log in met je wachtwoord.",
+    "microsoftEmailUnverified": "Microsoft heeft het e-mailadres van dit account niet bevestigd, dus je kunt er niet mee inloggen.",
+    "microsoftFailed": "Inloggen met Microsoft is niet gelukt. Probeer het opnieuw.",
     "generic": "Er is iets misgegaan. Probeer het opnieuw.",
     "emailAlreadyInUse": "Dit e-mailadres is al geregistreerd.",
     "invalidEmail": "Ongeldig e-mailadres.",

@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "atau",
+    "continueWithMicrosoft": "Teruskan dengan Microsoft",
+    "providerTermsNotice": "Dengan meneruskan menggunakan Microsoft, anda bersetuju dengan terma penggunaan dan polisi privasi.",
     "welcome": "Selamat datang ke yOdin",
     "subtitle": "Berhubung merentas budaya",
     "login": "Log Masuk",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} hari lalu"
   },
   "errors": {
+    "microsoftEmailExists": "E-mel ini sudah didaftarkan. Log masuk dengan kata laluan anda.",
+    "microsoftEmailUnverified": "Microsoft tidak mengesahkan alamat e-mel akaun ini, jadi ia tidak boleh digunakan untuk log masuk.",
+    "microsoftFailed": "Log masuk dengan Microsoft tidak berjaya. Cuba lagi.",
     "generic": "Sesuatu telah berlaku. Sila cuba lagi.",
     "emailAlreadyInUse": "E-mel ini sudah didaftarkan.",
     "invalidEmail": "Alamat e-mel tidak sah.",

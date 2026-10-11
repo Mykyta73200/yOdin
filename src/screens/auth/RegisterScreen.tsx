@@ -14,6 +14,7 @@ import Text from '../../components/AppText';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { registerUser, loginUser } from '../../services/authService';
+import { signInWithMicrosoft } from '../../services/microsoftAuth';
 import { useAuthStore } from '../../store/useAuthStore';
 import { getErrorMessage } from '../../services/errorHandler';
 import { useUsernameCheck } from '../../hooks/useUsernameCheck';
@@ -39,6 +40,7 @@ export default function RegisterScreen({ navigation, route }: any) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [msLoading, setMsLoading] = useState(false);
   // Play requires the terms to be accepted before a user can create content, so
   // the gate is on registration rather than on the first post.
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -68,6 +70,27 @@ export default function RegisterScreen({ navigation, route }: any) {
       else setError(getErrorMessage(e, t));
     } finally {
       setLoading(false);
+    }
+  }
+
+  // The Microsoft path has no terms checkbox of its own: the notice sits
+  // directly above the button, so tapping it is the consent, and the version
+  // accepted is recorded server-side when the profile is created.
+  async function handleMicrosoft() {
+    setError('');
+    setMsLoading(true);
+    try {
+      await signInWithMicrosoft();
+    } catch (e) {
+      const code = e instanceof Error ? e.message : '';
+      // Backing out of the Microsoft page is not an error worth a red line.
+      if (code === 'cancelled') return;
+      if (code.includes('email-exists')) setError(t('errors.microsoftEmailExists'));
+      else if (code.includes('email-unverified') || code.includes('email-missing')) {
+        setError(t('errors.microsoftEmailUnverified'));
+      } else setError(t('errors.microsoftFailed'));
+    } finally {
+      setMsLoading(false);
     }
   }
 
@@ -229,6 +252,42 @@ export default function RegisterScreen({ navigation, route }: any) {
           }
         </TouchableOpacity>
 
+        <View style={styles.dividerRow}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>{t('auth.or')}</Text>
+          <View style={styles.dividerLine} />
+        </View>
+
+        <TouchableOpacity
+          style={[styles.providerBtn, msLoading && styles.btnDisabled]}
+          onPress={handleMicrosoft}
+          disabled={msLoading || loading}
+        >
+          {msLoading
+            ? <ActivityIndicator color={colors.textPrimary} />
+            : (
+              <>
+                <Ionicons name="logo-microsoft" size={18} color={colors.textPrimary} />
+                <Text style={styles.providerBtnText}>{t('auth.continueWithMicrosoft')}</Text>
+              </>
+            )
+          }
+        </TouchableOpacity>
+
+        <Text style={styles.providerNotice}>{t('auth.providerTermsNotice')}</Text>
+        {/* In register mode the same two links already sit in the terms block
+            above, so they are only repeated here where that block is hidden. */}
+        {mode === 'login' && (
+          <View style={styles.providerLinks}>
+            <TouchableOpacity onPress={() => Linking.openURL(TERMS_URL)}>
+              <Text style={styles.termsLink}>{t('terms.open')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Linking.openURL(PRIVACY_URL)}>
+              <Text style={styles.termsLink}>{t('settings.privacy')}</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
         <TouchableOpacity
           style={styles.switchMode}
           onPress={() => { setMode(mode === 'register' ? 'login' : 'register'); setError(''); }}
@@ -344,6 +403,52 @@ function makeStyles(topInset: number, c: import('../../theme/colors').ColorPalet
       color: '#fff',
       fontSize: Typography.fontSizeMD,
       fontWeight: Typography.fontWeightSemiBold,
+    },
+    dividerRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+      marginTop: 20,
+      marginBottom: 16,
+    },
+    dividerLine: { flex: 1, height: 1, backgroundColor: c.border },
+    dividerText: {
+      fontSize: Typography.fontSizeSM,
+      color: c.textSecondary,
+    },
+    // Neutral surface rather than the brand violet: the primary button stays
+    // the app's own signup, and a provider button that shouts louder than it
+    // reads as the recommended path.
+    providerBtn: {
+      backgroundColor: c.surface,
+      borderWidth: 1.5,
+      borderColor: c.border,
+      borderRadius: 16,
+      paddingVertical: 16,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 10,
+    },
+    providerBtnText: {
+      color: c.textPrimary,
+      fontSize: Typography.fontSizeMD,
+      fontWeight: Typography.fontWeightSemiBold,
+    },
+    // Clickwrap notice: it has to be read before the tap, so it sits under the
+    // button only in reading order — visually it is the same block.
+    providerNotice: {
+      fontSize: Typography.fontSizeXS,
+      color: c.textSecondary,
+      textAlign: 'center',
+      marginTop: 10,
+      lineHeight: 16,
+    },
+    providerLinks: {
+      flexDirection: 'row',
+      gap: 18,
+      justifyContent: 'center',
+      marginTop: 6,
     },
     switchMode: { alignItems: 'center', marginTop: 24 },
     switchText: {

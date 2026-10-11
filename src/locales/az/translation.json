@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "və ya",
+    "continueWithMicrosoft": "Microsoft ilə davam et",
+    "providerTermsNotice": "Microsoft ilə davam etməklə İstifadə Şərtləri və Məxfilik Siyasəti ilə razılaşırsınız.",
     "welcome": "yOdin-ə xoş gəldiniz",
     "subtitle": "Mədəniyyətlər arasında əlaqə",
     "login": "Daxil ol",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} g. əvvəl"
   },
   "errors": {
+    "microsoftEmailExists": "Bu e-poçt artıq qeydiyyatdadır. Şifrənizlə daxil olun.",
+    "microsoftEmailUnverified": "Microsoft bu hesabın e-poçt ünvanını təsdiqləməyib, ona görə də onunla daxil olmaq mümkün deyil.",
+    "microsoftFailed": "Microsoft ilə daxil olmaq alınmadı. Yenidən cəhd edin.",
     "generic": "Xəta baş verdi. Yenidən cəhd edin.",
     "emailAlreadyInUse": "Bu email artıq qeydiyyatdan keçib.",
     "invalidEmail": "Yanlış email ünvanı.",

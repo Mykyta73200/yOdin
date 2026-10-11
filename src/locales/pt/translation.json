@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "ou",
+    "continueWithMicrosoft": "Continuar com a Microsoft",
+    "providerTermsNotice": "Ao continuar com a Microsoft, você aceita os termos de uso e a política de privacidade.",
     "welcome": "Bem-vindo ao yOdin",
     "subtitle": "Conecte-se entre culturas",
     "login": "Entrar",
@@ -153,6 +156,9 @@
     "daysAgo": "há {{count}} d"
   },
   "errors": {
+    "microsoftEmailExists": "Este e-mail já está registrado. Entre com sua senha.",
+    "microsoftEmailUnverified": "A Microsoft não confirmou o endereço de e-mail desta conta, por isso não é possível entrar com ele.",
+    "microsoftFailed": "Não foi possível entrar com a Microsoft. Tente novamente.",
     "generic": "Algo deu errado. Por favor tente novamente.",
     "emailAlreadyInUse": "Este e-mail já está registrado.",
     "invalidEmail": "Endereço de e-mail inválido.",

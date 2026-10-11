@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "ou",
+    "continueWithMicrosoft": "Continuer avec Microsoft",
+    "providerTermsNotice": "En continuant avec Microsoft, vous acceptez les conditions d'utilisation et la politique de confidentialité.",
     "welcome": "Bienvenue sur yOdin",
     "subtitle": "Connectez-vous entre les cultures",
     "login": "Se connecter",
@@ -153,6 +156,9 @@
     "daysAgo": "il y a {{count}} j"
   },
   "errors": {
+    "microsoftEmailExists": "Cette adresse e-mail est déjà enregistrée. Connectez-vous avec votre mot de passe.",
+    "microsoftEmailUnverified": "Microsoft n'a pas confirmé l'adresse e-mail de ce compte ; elle ne peut donc pas servir à se connecter.",
+    "microsoftFailed": "La connexion avec Microsoft n'a pas abouti. Veuillez réessayer.",
     "generic": "Quelque chose s'est mal passé. Veuillez réessayer.",
     "emailAlreadyInUse": "Cet e-mail est déjà enregistré.",
     "invalidEmail": "Adresse e-mail invalide.",

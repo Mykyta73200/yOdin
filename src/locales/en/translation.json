@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "or",
+    "continueWithMicrosoft": "Continue with Microsoft",
+    "providerTermsNotice": "By continuing with Microsoft you accept the Terms of Use and the Privacy Policy.",
     "welcome": "Welcome to yOdin",
     "subtitle": "Connect across cultures",
     "login": "Log In",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}}d ago"
   },
   "errors": {
+    "microsoftEmailExists": "This email is already registered. Log in with your password instead.",
+    "microsoftEmailUnverified": "Microsoft didn't confirm this account's email address, so it can't be used to sign in.",
+    "microsoftFailed": "Microsoft sign-in didn't go through. Please try again.",
     "generic": "Something went wrong. Please try again.",
     "emailAlreadyInUse": "This email is already registered.",
     "invalidEmail": "Invalid email address.",

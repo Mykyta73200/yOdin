@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "या",
+    "continueWithMicrosoft": "Microsoft से जारी रखें",
+    "providerTermsNotice": "Microsoft से जारी रखने पर आप उपयोग की शर्तों और गोपनीयता नीति से सहमत होते हैं।",
     "welcome": "yOdin में आपका स्वागत है",
     "subtitle": "संस्कृतियों के पार जुड़ें",
     "login": "लॉग इन करें",
@@ -153,6 +156,9 @@
     "daysAgo": "{{count}} दिन पहले"
   },
   "errors": {
+    "microsoftEmailExists": "यह ईमेल पहले से पंजीकृत है। अपने पासवर्ड से लॉग इन करें।",
+    "microsoftEmailUnverified": "Microsoft ने इस खाते का ईमेल पता सत्यापित नहीं किया, इसलिए इससे साइन इन नहीं किया जा सकता।",
+    "microsoftFailed": "Microsoft से साइन इन पूरा नहीं हुआ। कृपया फिर कोशिश करें।",
     "generic": "कुछ गलत हो गया। कृपया पुनः प्रयास करें।",
     "emailAlreadyInUse": "यह ईमेल पहले से पंजीकृत है।",
     "invalidEmail": "अमान्य ईमेल पता।",

@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "oder",
+    "continueWithMicrosoft": "Mit Microsoft fortfahren",
+    "providerTermsNotice": "Wenn du mit Microsoft fortfährst, akzeptierst du die Nutzungsbedingungen und die Datenschutzerklärung.",
     "welcome": "Willkommen bei yOdin",
     "subtitle": "Verbinde dich über Kulturen hinweg",
     "login": "Anmelden",
@@ -153,6 +156,9 @@
     "daysAgo": "vor {{count}} T."
   },
   "errors": {
+    "microsoftEmailExists": "Diese E-Mail-Adresse ist bereits registriert. Melde dich mit deinem Passwort an.",
+    "microsoftEmailUnverified": "Microsoft hat die E-Mail-Adresse dieses Kontos nicht bestätigt, daher ist eine Anmeldung damit nicht möglich.",
+    "microsoftFailed": "Die Anmeldung mit Microsoft hat nicht funktioniert. Bitte versuche es erneut.",
     "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "emailAlreadyInUse": "Diese E-Mail ist bereits registriert.",
     "invalidEmail": "Ungültige E-Mail-Adresse.",

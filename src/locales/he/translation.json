@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "או",
+    "continueWithMicrosoft": "להמשיך עם Microsoft",
+    "providerTermsNotice": "בהמשך עם Microsoft אתה מאשר את תנאי השימוש ומדיניות הפרטיות.",
     "welcome": "ברוך הבא ל-yOdin",
     "subtitle": "התחבר בין תרבויות",
     "login": "התחבר",
@@ -153,6 +156,9 @@
     "daysAgo": "לפני {{count}} ימים"
   },
   "errors": {
+    "microsoftEmailExists": "כתובת האימייל הזו כבר רשומה. היכנס עם הסיסמה שלך.",
+    "microsoftEmailUnverified": "Microsoft לא אישרה את כתובת האימייל של החשבון הזה, ולכן אי אפשר להתחבר איתה.",
+    "microsoftFailed": "ההתחברות עם Microsoft לא הושלמה. נסה שוב.",
     "generic": "משהו השתבש. אנא נסה שוב.",
     "emailAlreadyInUse": "האימייל הזה כבר רשום.",
     "invalidEmail": "כתובת אימייל לא חוקית.",

@@ -1,5 +1,8 @@
 {
   "auth": {
+    "or": "nebo",
+    "continueWithMicrosoft": "Pokračovat s Microsoftem",
+    "providerTermsNotice": "Pokračováním s Microsoftem souhlasíte s podmínkami použití a zásadami ochrany osobních údajů.",
     "welcome": "Vítejte v yOdin",
     "subtitle": "Spojte se napříč kulturami",
     "login": "Přihlásit se",
@@ -154,6 +157,9 @@
     "daysAgo": "před {{count}} dny"
   },
   "errors": {
+    "microsoftEmailExists": "Tento e-mail je už zaregistrovaný. Přihlaste se heslem.",
+    "microsoftEmailUnverified": "Microsoft nepotvrdil e-mailovou adresu tohoto účtu, takže se s ní nelze přihlásit.",
+    "microsoftFailed": "Přihlášení přes Microsoft se nezdařilo. Zkuste to znovu.",
     "generic": "Něco se pokazilo. Zkuste to prosím znovu.",
     "emailAlreadyInUse": "Tento e-mail je již zaregistrován.",
     "invalidEmail": "Neplatná e-mailová adresa.",
