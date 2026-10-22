@@ -63,3 +63,6 @@ serviceAccountKey.json
 
 # Backup written by scripts/demo-engagement.js while seeding screenshot data
 demo-engagement-backup.json
+
+# Apple keys (.p8 ключи, Issuer/Key ID) — только локально, восстановлению не подлежат
+Keys/
