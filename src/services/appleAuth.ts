@@ -1,6 +1,6 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
-import { OAuthProvider, signInWithCredential } from 'firebase/auth';
+import { OAuthProvider, signInWithCredential, reauthenticateWithCredential } from 'firebase/auth';
 import { httpsCallable } from 'firebase/functions';
 import { auth, functions } from './firebase';
 import { TERMS_VERSION } from '../config/links';
@@ -22,9 +22,15 @@ export function isAppleSignInAvailable(): Promise<boolean> {
   return AppleAuthentication.isAvailableAsync();
 }
 
-export async function signInWithApple(): Promise<void> {
-  if (!(await AppleAuthentication.isAvailableAsync())) throw new Error('unavailable');
+interface AppleIdentity {
+  firebaseCredential: ReturnType<OAuthProvider['credential']>;
+  firstName: string;
+  lastName: string;
+  authorizationCode: string;
+}
 
+// Shared by sign-in and by the re-authentication that account deletion needs.
+async function requestAppleIdentity(): Promise<AppleIdentity> {
   // Apple is handed the SHA-256 of the nonce and echoes it into the id_token;
   // Firebase is handed the raw value and checks that it hashes to what the
   // token carries. That is what stops a token captured elsewhere being
@@ -60,11 +66,23 @@ export async function signInWithApple(): Promise<void> {
   const firstName = credential.fullName?.givenName?.trim() ?? '';
   const lastName = credential.fullName?.familyName?.trim() ?? '';
 
-  const provider = new OAuthProvider('apple.com');
-  await signInWithCredential(
-    auth,
-    provider.credential({ idToken: credential.identityToken, rawNonce }),
-  );
+  return {
+    firebaseCredential: new OAuthProvider('apple.com').credential({
+      idToken: credential.identityToken,
+      rawNonce,
+    }),
+    firstName,
+    lastName,
+    authorizationCode: credential.authorizationCode ?? '',
+  };
+}
+
+export async function signInWithApple(): Promise<void> {
+  if (!(await AppleAuthentication.isAvailableAsync())) throw new Error('unavailable');
+
+  const { firebaseCredential, firstName, lastName, authorizationCode } =
+    await requestAppleIdentity();
+  await signInWithCredential(auth, firebaseCredential);
 
   // The app's own signup writes users/{uid} from the client, but a provider
   // sign-in has no such step and the Firestore rules reject a create that omits
@@ -83,14 +101,37 @@ export async function signInWithApple(): Promise<void> {
   // app has no screen for — so the session is dropped and the error surfaces,
   // letting them simply try again.
   try {
-    await ensure({
-      firstName,
-      lastName,
-      authorizationCode: credential.authorizationCode ?? '',
-      termsVersion: TERMS_VERSION,
-    });
+    await ensure({ firstName, lastName, authorizationCode, termsVersion: TERMS_VERSION });
   } catch (e) {
     await auth.signOut().catch(() => {});
     throw new Error('apple-failed');
+  }
+}
+
+// An Apple account has no password, so account deletion cannot ask for one. The
+// system sheet is the second factor instead: it refreshes `auth_time`, which is
+// what the deleteAccount function checks before it will touch anything.
+export async function reauthenticateWithApple(): Promise<void> {
+  const user = auth.currentUser;
+  if (!user) throw new Error('not-signed-in');
+  const { firebaseCredential, authorizationCode } = await requestAppleIdentity();
+  await reauthenticateWithCredential(user, firebaseCredential);
+
+  // Hand the fresh code over before deletion runs, so the refresh token Apple's
+  // revocation needs is certain to be on file. The one captured at sign-in is
+  // best-effort and may never have been stored; without it the revoke call
+  // silently does nothing, which is exactly what App Review checks for. The
+  // server leaves an existing profile untouched, so the empty names are inert.
+  if (authorizationCode) {
+    const ensure = httpsCallable<
+      { firstName: string; lastName: string; authorizationCode: string; termsVersion: string },
+      { created: boolean }
+    >(functions, 'appleEnsureProfile');
+    await ensure({
+      firstName: '',
+      lastName: '',
+      authorizationCode,
+      termsVersion: TERMS_VERSION,
+    }).catch(() => undefined);
   }
 }

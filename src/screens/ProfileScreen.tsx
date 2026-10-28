@@ -18,7 +18,7 @@ import Text from '../components/AppText';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useFocusEffect } from '@react-navigation/native';
-import { logoutUser, updateUserProfile, deleteOwnAccount, getUserProfile } from '../services/authService';
+import { logoutUser, updateUserProfile, deleteOwnAccount, getUserProfile, getReauthMethod } from '../services/authService';
 import { useBlockStore } from '../store/useBlockStore';
 import { TERMS_URL, PRIVACY_URL } from '../config/links';
 import { uploadAvatar } from '../services/storageService';
@@ -368,15 +368,21 @@ export default function ProfileScreen({ navigation }: any) {
     clearSession();
   }
 
+  // An Apple or Microsoft account has no password to re-enter; it re-proves
+  // itself through the provider instead, so the field is hidden for those.
+  const needsPassword = getReauthMethod() === 'password';
+
   async function handleDeleteAccount() {
-    if (!deletePassword || deleting) return;
+    if (deleting || (needsPassword && !deletePassword)) return;
     setDeleting(true);
     try {
-      await deleteOwnAccount(deletePassword);
+      await deleteOwnAccount(needsPassword ? deletePassword : undefined);
       setDeleteModal(false);
       setMenuVisible(false);
       clearSession();
     } catch (e) {
+      // Dismissing the provider's own sheet is a deliberate cancel, not a failure.
+      if (e instanceof Error && e.message === 'cancelled') return;
       const code = (e as { code?: string })?.code ?? '';
       // Firebase reports a wrong password as invalid-credential on newer SDKs.
       const message =
@@ -1089,23 +1095,31 @@ export default function ProfileScreen({ navigation }: any) {
             </View>
             <Text style={styles.privacyText}>{t('deleteAccount.kept')}</Text>
 
-            <Text style={[styles.editLabel, { marginTop: 28 }]}>{t('deleteAccount.password')}</Text>
-            <TextInput
-              style={styles.editInput}
-              value={deletePassword}
-              onChangeText={setDeletePassword}
-              placeholder={t('deleteAccount.passwordPlaceholder')}
-              placeholderTextColor={colors.textSecondary}
-              secureTextEntry
-              autoCapitalize="none"
-              autoComplete="current-password"
-              editable={!deleting}
-            />
+            {needsPassword && (
+              <>
+                <Text style={[styles.editLabel, { marginTop: 28 }]}>{t('deleteAccount.password')}</Text>
+                <TextInput
+                  style={styles.editInput}
+                  value={deletePassword}
+                  onChangeText={setDeletePassword}
+                  placeholder={t('deleteAccount.passwordPlaceholder')}
+                  placeholderTextColor={colors.textSecondary}
+                  secureTextEntry
+                  autoCapitalize="none"
+                  autoComplete="current-password"
+                  editable={!deleting}
+                />
+              </>
+            )}
 
             <TouchableOpacity
-              style={[styles.deleteButton, (!deletePassword || deleting) && styles.deleteButtonDisabled]}
+              style={[
+                styles.deleteButton,
+                !needsPassword && { marginTop: 28 },
+                ((needsPassword && !deletePassword) || deleting) && styles.deleteButtonDisabled,
+              ]}
               onPress={handleDeleteAccount}
-              disabled={!deletePassword || deleting}
+              disabled={(needsPassword && !deletePassword) || deleting}
             >
               {deleting ? (
                 <ActivityIndicator color="#fff" />
