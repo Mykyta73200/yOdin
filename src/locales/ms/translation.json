@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "E-mel ini sudah didaftarkan. Log masuk dengan kata laluan anda.",
     "microsoftEmailUnverified": "Microsoft tidak mengesahkan alamat e-mel akaun ini, jadi ia tidak boleh digunakan untuk log masuk.",
+    "appleFailed": "Log masuk dengan Apple tidak berjaya. Cuba lagi.",
     "microsoftFailed": "Log masuk dengan Microsoft tidak berjaya. Cuba lagi.",
     "generic": "Sesuatu telah berlaku. Sila cuba lagi.",
     "emailAlreadyInUse": "E-mel ini sudah didaftarkan.",

@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Diese E-Mail-Adresse ist bereits registriert. Melde dich mit deinem Passwort an.",
     "microsoftEmailUnverified": "Microsoft hat die E-Mail-Adresse dieses Kontos nicht bestätigt, daher ist eine Anmeldung damit nicht möglich.",
+    "appleFailed": "Die Anmeldung mit Apple hat nicht funktioniert. Bitte versuche es erneut.",
     "microsoftFailed": "Die Anmeldung mit Microsoft hat nicht funktioniert. Bitte versuche es erneut.",
     "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "emailAlreadyInUse": "Diese E-Mail ist bereits registriert.",

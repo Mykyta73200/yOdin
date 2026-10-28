@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Cette adresse e-mail est déjà enregistrée. Connectez-vous avec votre mot de passe.",
     "microsoftEmailUnverified": "Microsoft n'a pas confirmé l'adresse e-mail de ce compte ; elle ne peut donc pas servir à se connecter.",
+    "appleFailed": "La connexion avec Apple n'a pas abouti. Veuillez réessayer.",
     "microsoftFailed": "La connexion avec Microsoft n'a pas abouti. Veuillez réessayer.",
     "generic": "Quelque chose s'est mal passé. Veuillez réessayer.",
     "emailAlreadyInUse": "Cet e-mail est déjà enregistré.",

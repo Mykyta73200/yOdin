@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Este e-mail já está registrado. Entre com sua senha.",
     "microsoftEmailUnverified": "A Microsoft não confirmou o endereço de e-mail desta conta, por isso não é possível entrar com ele.",
+    "appleFailed": "Não foi possível entrar com a Apple. Tente novamente.",
     "microsoftFailed": "Não foi possível entrar com a Microsoft. Tente novamente.",
     "generic": "Algo deu errado. Por favor tente novamente.",
     "emailAlreadyInUse": "Este e-mail já está registrado.",

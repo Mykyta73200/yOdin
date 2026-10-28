@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Email ini sudah terdaftar. Masuk dengan kata sandimu.",
     "microsoftEmailUnverified": "Microsoft tidak mengonfirmasi alamat email akun ini, jadi tidak bisa dipakai untuk masuk.",
+    "appleFailed": "Masuk dengan Apple tidak berhasil. Coba lagi.",
     "microsoftFailed": "Masuk dengan Microsoft tidak berhasil. Coba lagi.",
     "generic": "Terjadi kesalahan. Silakan coba lagi.",
     "emailAlreadyInUse": "Email ini sudah terdaftar.",

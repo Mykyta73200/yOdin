@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "이미 등록된 이메일입니다. 비밀번호로 로그인하세요.",
     "microsoftEmailUnverified": "Microsoft가 이 계정의 이메일 주소를 확인하지 않아 로그인에 사용할 수 없습니다.",
+    "appleFailed": "Apple 로그인에 실패했습니다. 다시 시도해 주세요.",
     "microsoftFailed": "Microsoft 로그인에 실패했습니다. 다시 시도해 주세요.",
     "generic": "오류가 발생했습니다. 다시 시도해 주세요.",
     "emailAlreadyInUse": "이미 등록된 이메일입니다.",

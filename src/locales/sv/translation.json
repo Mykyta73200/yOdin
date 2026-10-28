@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Den här e-postadressen är redan registrerad. Logga in med ditt lösenord.",
     "microsoftEmailUnverified": "Microsoft bekräftade inte e-postadressen för det här kontot, så den kan inte användas för att logga in.",
+    "appleFailed": "Inloggningen med Apple gick inte igenom. Försök igen.",
     "microsoftFailed": "Inloggningen med Microsoft gick inte igenom. Försök igen.",
     "generic": "Något gick fel. Försök igen.",
     "emailAlreadyInUse": "Den här e-postadressen är redan registrerad.",

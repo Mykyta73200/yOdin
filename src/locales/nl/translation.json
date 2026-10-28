@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Dit e-mailadres is al geregistreerd. Log in met je wachtwoord.",
     "microsoftEmailUnverified": "Microsoft heeft het e-mailadres van dit account niet bevestigd, dus je kunt er niet mee inloggen.",
+    "appleFailed": "Inloggen met Apple is niet gelukt. Probeer het opnieuw.",
     "microsoftFailed": "Inloggen met Microsoft is niet gelukt. Probeer het opnieuw.",
     "generic": "Er is iets misgegaan. Probeer het opnieuw.",
     "emailAlreadyInUse": "Dit e-mailadres is al geregistreerd.",

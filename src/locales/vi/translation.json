@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Email này đã được đăng ký. Hãy đăng nhập bằng mật khẩu của bạn.",
     "microsoftEmailUnverified": "Microsoft không xác nhận địa chỉ email của tài khoản này, nên không thể dùng để đăng nhập.",
+    "appleFailed": "Đăng nhập bằng Apple không thành công. Vui lòng thử lại.",
     "microsoftFailed": "Đăng nhập bằng Microsoft không thành công. Vui lòng thử lại.",
     "generic": "Đã xảy ra lỗi. Vui lòng thử lại.",
     "emailAlreadyInUse": "Email này đã được đăng ký.",

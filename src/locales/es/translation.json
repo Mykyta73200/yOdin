@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Este correo ya está registrado. Inicia sesión con tu contraseña.",
     "microsoftEmailUnverified": "Microsoft no confirmó la dirección de correo de esta cuenta, así que no se puede usar para iniciar sesión.",
+    "appleFailed": "No se pudo iniciar sesión con Apple. Inténtalo de nuevo.",
     "microsoftFailed": "No se pudo iniciar sesión con Microsoft. Inténtalo de nuevo.",
     "generic": "Algo salió mal. Por favor intenta de nuevo.",
     "emailAlreadyInUse": "Este correo ya está registrado.",

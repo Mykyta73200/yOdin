@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "כתובת האימייל הזו כבר רשומה. היכנס עם הסיסמה שלך.",
     "microsoftEmailUnverified": "Microsoft לא אישרה את כתובת האימייל של החשבון הזה, ולכן אי אפשר להתחבר איתה.",
+    "appleFailed": "ההתחברות עם Apple לא הושלמה. נסה שוב.",
     "microsoftFailed": "ההתחברות עם Microsoft לא הושלמה. נסה שוב.",
     "generic": "משהו השתבש. אנא נסה שוב.",
     "emailAlreadyInUse": "האימייל הזה כבר רשום.",

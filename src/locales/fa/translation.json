@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "این ایمیل قبلاً ثبت شده است. با رمز عبور خود وارد شوید.",
     "microsoftEmailUnverified": "Microsoft نشانی ایمیل این حساب را تأیید نکرده است، بنابراین نمی‌توان با آن وارد شد.",
+    "appleFailed": "ورود با Apple انجام نشد. دوباره تلاش کنید.",
     "microsoftFailed": "ورود با Microsoft انجام نشد. دوباره تلاش کنید.",
     "generic": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
     "emailAlreadyInUse": "این ایمیل قبلاً ثبت شده.",

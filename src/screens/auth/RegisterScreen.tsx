@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Linking,
@@ -15,6 +15,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { registerUser, loginUser } from '../../services/authService';
 import { signInWithMicrosoft } from '../../services/microsoftAuth';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { signInWithApple, isAppleSignInAvailable } from '../../services/appleAuth';
 import { useAuthStore } from '../../store/useAuthStore';
 import { getErrorMessage } from '../../services/errorHandler';
 import { useUsernameCheck } from '../../hooks/useUsernameCheck';
@@ -28,7 +30,7 @@ type Mode = 'register' | 'login';
 
 export default function RegisterScreen({ navigation, route }: any) {
   const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
   const insets = useSafeAreaInsets();
   const styles = makeStyles(insets.top, colors);
   const [mode, setMode] = useState<Mode>(route?.params?.mode ?? 'register');
@@ -41,11 +43,23 @@ export default function RegisterScreen({ navigation, route }: any) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [msLoading, setMsLoading] = useState(false);
+  const [appleLoading, setAppleLoading] = useState(false);
+  // Apple sign-in exists only on iOS 13+, so the button is rendered from
+  // what the device actually reports rather than from Platform.OS.
+  const [appleReady, setAppleReady] = useState(false);
   // Play requires the terms to be accepted before a user can create content, so
   // the gate is on registration rather than on the first post.
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const setPendingEmailVerification = useAuthStore((s) => s.setPendingEmailVerification);
   const usernameStatus = useUsernameCheck(username);
+
+  useEffect(() => {
+    let alive = true;
+    isAppleSignInAvailable()
+      .then((ok) => { if (alive) setAppleReady(ok); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
 
   async function handleSubmit() {
     setError('');
@@ -91,6 +105,25 @@ export default function RegisterScreen({ navigation, route }: any) {
       } else setError(t('errors.microsoftFailed'));
     } finally {
       setMsLoading(false);
+    }
+  }
+
+  // Same consent model as Microsoft: the notice sits directly above the
+  // provider buttons, so the tap is the consent, and the accepted revision is
+  // recorded server-side when the profile is created.
+  async function handleApple() {
+    if (appleLoading || loading) return;
+    setError('');
+    setAppleLoading(true);
+    try {
+      await signInWithApple();
+    } catch (e) {
+      const code = e instanceof Error ? e.message : '';
+      // Dismissing the system sheet is not an error worth a red line.
+      if (code === 'cancelled' || code === 'unavailable') return;
+      setError(t('errors.appleFailed'));
+    } finally {
+      setAppleLoading(false);
     }
   }
 
@@ -257,6 +290,28 @@ export default function RegisterScreen({ navigation, route }: any) {
           <Text style={styles.dividerText}>{t('auth.or')}</Text>
           <View style={styles.dividerLine} />
         </View>
+
+        {appleReady && (
+          <View
+            style={[styles.appleWrap, appleLoading && styles.btnDisabled]}
+            pointerEvents={appleLoading || loading ? 'none' : 'auto'}
+          >
+            {/* Apple's own button rather than a styled copy: guideline 4.8 wants
+                their artwork and wording, and it localises itself into all the
+                languages the app ships. */}
+            <AppleAuthentication.AppleAuthenticationButton
+              buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
+              buttonStyle={
+                isDark
+                  ? AppleAuthentication.AppleAuthenticationButtonStyle.WHITE
+                  : AppleAuthentication.AppleAuthenticationButtonStyle.WHITE_OUTLINE
+              }
+              cornerRadius={16}
+              style={styles.appleBtn}
+              onPress={handleApple}
+            />
+          </View>
+        )}
 
         <TouchableOpacity
           style={[styles.providerBtn, msLoading && styles.btnDisabled]}
@@ -430,6 +485,10 @@ function makeStyles(topInset: number, c: import('../../theme/colors').ColorPalet
       justifyContent: 'center',
       gap: 10,
     },
+    // Height matches providerBtn (16pt padding + one line of label) so the two
+    // provider buttons read as a pair. The native button needs explicit bounds.
+    appleWrap: { marginBottom: 12 },
+    appleBtn: { width: '100%', height: 54 },
     providerBtnText: {
       color: c.textPrimary,
       fontSize: Typography.fontSizeMD,

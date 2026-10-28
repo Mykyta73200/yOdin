@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "该邮箱已注册，请使用密码登录。",
     "microsoftEmailUnverified": "Microsoft 未确认此账号的邮箱地址，因此无法用它登录。",
+    "appleFailed": "使用 Apple 登录未成功，请重试。",
     "microsoftFailed": "使用 Microsoft 登录未成功，请重试。",
     "generic": "出错了，请重试。",
     "emailAlreadyInUse": "该邮箱已被注册。",

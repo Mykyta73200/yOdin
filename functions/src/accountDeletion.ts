@@ -12,6 +12,7 @@ import {
 } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
 import { createHmac } from 'crypto';
+import { revokeAppleToken, APPLE_SECRETS } from './appleAuth';
 
 // ── Account deletion ─────────────────────────────────────────────────────────
 // Deleting an account removes the profile, the handle's owner, everything the
@@ -101,6 +102,12 @@ async function purgeAccount(uid: string): Promise<void> {
     if (isAuthNotFound(e)) return null;
     throw e;
   });
+
+  // Apple requires an app that offers Sign in with Apple to revoke the token
+  // when the account is deleted. Done first, while the stored refresh token is
+  // still around, and best-effort: Apple being unreachable must not strand a
+  // user who asked to be deleted. A no-op for every other provider.
+  await revokeAppleToken(uid).catch(() => {});
 
   const userRef = db().doc(`users/${uid}`);
   const profile = (await userRef.get()).data();
@@ -228,7 +235,7 @@ async function purgeAccount(uid: string): Promise<void> {
 }
 
 export const deleteAccount = onCall(
-  { region: REGION, secrets: [EMAIL_HASH_KEY], timeoutSeconds: 540, memory: '512MiB' },
+  { region: REGION, secrets: [EMAIL_HASH_KEY, ...APPLE_SECRETS], timeoutSeconds: 540, memory: '512MiB' },
   async (request) => {
     const uid = request.auth?.uid;
     if (!uid) throw new HttpsError('unauthenticated', 'Sign in to delete your account.');

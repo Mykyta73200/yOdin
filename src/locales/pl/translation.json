@@ -160,6 +160,7 @@
   "errors": {
     "microsoftEmailExists": "Ten e-mail jest już zarejestrowany. Zaloguj się hasłem.",
     "microsoftEmailUnverified": "Microsoft nie potwierdził adresu e-mail tego konta, więc nie można się nim zalogować.",
+    "appleFailed": "Logowanie przez Apple nie powiodło się. Spróbuj ponownie.",
     "microsoftFailed": "Logowanie przez Microsoft nie powiodło się. Spróbuj ponownie.",
     "generic": "Coś poszło nie tak. Spróbuj ponownie.",
     "emailAlreadyInUse": "Ten e-mail jest już zarejestrowany.",

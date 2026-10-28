@@ -159,6 +159,7 @@
   "errors": {
     "microsoftEmailExists": "Acest e-mail este deja înregistrat. Conectează-te cu parola ta.",
     "microsoftEmailUnverified": "Microsoft nu a confirmat adresa de e-mail a acestui cont, deci nu poate fi folosită pentru conectare.",
+    "appleFailed": "Conectarea cu Apple nu a reușit. Încearcă din nou.",
     "microsoftFailed": "Conectarea cu Microsoft nu a reușit. Încearcă din nou.",
     "generic": "Ceva a mers greșit. Te rugăm să încerci din nou.",
     "emailAlreadyInUse": "Acest e-mail este deja înregistrat.",

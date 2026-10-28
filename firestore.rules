@@ -196,6 +196,13 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Apple refresh tokens, kept only so the account-deletion function can
+    // revoke them at Apple as the App Store requires. Server-only, and never
+    // readable by the user they belong to.
+    match /appleTokens/{uid} {
+      allow read, write: if false;
+    }
+
     // True when `uid` has blocked the signed-in user. Blocking is not just a
     // visual filter: someone you blocked cannot answer in your discussions,
     // comment on your posts, or reach you with a mention.

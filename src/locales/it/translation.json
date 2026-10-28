@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Questa email è già registrata. Accedi con la tua password.",
     "microsoftEmailUnverified": "Microsoft non ha confermato l'indirizzo email di questo account, quindi non può essere usato per accedere.",
+    "appleFailed": "Accesso con Apple non riuscito. Riprova.",
     "microsoftFailed": "Accesso con Microsoft non riuscito. Riprova.",
     "generic": "Qualcosa è andato storto. Riprova.",
     "emailAlreadyInUse": "Questa email è già registrata.",

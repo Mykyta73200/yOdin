@@ -18,6 +18,7 @@
     "@react-navigation/native-stack": "^7.15.1",
     "algoliasearch": "^5.59.0",
     "expo": "^57.0.0",
+    "expo-apple-authentication": "~57.0.2",
     "expo-auth-session": "~57.0.14",
     "expo-crypto": "~57.0.3",
     "expo-font": "~57.0.4",
@@ -49,9 +50,10 @@
   "devDependencies": {
     "@types/react": "~19.2.4",
     "babel-preset-expo": "~57.0.0",
+    "eas-cli": "^26.0.0",
     "firebase-admin": "^14.5.0",
     "firebase-tools": "^15.32.1",
-    "typescript": "~6.0.3"
+    "typescript": "~5.9.3"
   },
   "private": true
 }

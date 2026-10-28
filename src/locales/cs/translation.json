@@ -159,6 +159,7 @@
   "errors": {
     "microsoftEmailExists": "Tento e-mail je už zaregistrovaný. Přihlaste se heslem.",
     "microsoftEmailUnverified": "Microsoft nepotvrdil e-mailovou adresu tohoto účtu, takže se s ní nelze přihlásit.",
+    "appleFailed": "Přihlášení přes Apple se nezdařilo. Zkuste to znovu.",
     "microsoftFailed": "Přihlášení přes Microsoft se nezdařilo. Zkuste to znovu.",
     "generic": "Něco se pokazilo. Zkuste to prosím znovu.",
     "emailAlreadyInUse": "Tento e-mail je již zaregistrován.",

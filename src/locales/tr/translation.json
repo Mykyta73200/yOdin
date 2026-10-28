@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "Bu e-posta zaten kayıtlı. Şifrenle giriş yap.",
     "microsoftEmailUnverified": "Microsoft bu hesabın e-posta adresini doğrulamadı, bu yüzden girişte kullanılamaz.",
+    "appleFailed": "Apple ile giriş yapılamadı. Tekrar dene.",
     "microsoftFailed": "Microsoft ile giriş yapılamadı. Tekrar dene.",
     "generic": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
     "emailAlreadyInUse": "Bu e-posta zaten kayıtlı.",

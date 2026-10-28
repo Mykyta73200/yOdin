@@ -168,12 +168,12 @@ async function claimHandle(uid: string, email: string): Promise<string> {
 // Also runs for an existing Auth user whose profile is missing (the
 // re-registration guard in accountDeletion.ts can remove one), so a returning
 // user never lands in that dead end either.
-async function ensureProfile(
+export async function ensureProviderProfile(
   identity: { uid: string; email: string; firstName: string; lastName: string },
   termsVersion: string,
-): Promise<void> {
+): Promise<boolean> {
   const ref = db().doc(`users/${identity.uid}`);
-  if ((await ref.get()).exists) return;
+  if ((await ref.get()).exists) return false;
 
   const username = await claimHandle(identity.uid, identity.email);
   // Email is deliberately not stored: users/{uid} is world-readable and the
@@ -196,6 +196,7 @@ async function ensureProfile(
     acceptedTermsAt: Date.now(),
     acceptedTermsVersion: termsVersion,
   });
+  return true;
 }
 
 export const microsoftSignIn = onCall(
@@ -235,7 +236,7 @@ export const microsoftSignIn = onCall(
       });
     }
 
-    await ensureProfile(identity, termsVersion);
+    await ensureProviderProfile(identity, termsVersion);
 
     return { token: await auth().createCustomToken(identity.uid) };
   },

@@ -159,6 +159,7 @@
   "errors": {
     "microsoftEmailExists": "Этот адрес уже зарегистрирован. Войдите по паролю.",
     "microsoftEmailUnverified": "Microsoft не подтвердила адрес почты этого аккаунта, поэтому войти через него нельзя.",
+    "appleFailed": "Войти через Apple не удалось. Попробуйте ещё раз.",
     "microsoftFailed": "Войти через Microsoft не удалось. Попробуйте ещё раз.",
     "generic": "Что-то пошло не так. Попробуйте снова.",
     "emailAlreadyInUse": "Этот email уже зарегистрирован.",

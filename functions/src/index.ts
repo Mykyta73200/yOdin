@@ -309,3 +309,4 @@ export const onReplyUpdated = onDocumentUpdated(
 export { deleteAccount, onUserProfileCreated } from './accountDeletion';
 export { onBlockCreated, onBlockDeleted } from './blocking';
 export { microsoftSignIn } from './microsoftAuth';
+export { appleEnsureProfile } from './appleAuth';

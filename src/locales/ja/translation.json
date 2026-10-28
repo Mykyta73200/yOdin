@@ -158,6 +158,7 @@
   "errors": {
     "microsoftEmailExists": "このメールアドレスは既に登録されています。パスワードでログインしてください。",
     "microsoftEmailUnverified": "Microsoft がこのアカウントのメールアドレスを確認できなかったため、サインインには使用できません。",
+    "appleFailed": "Apple でのサインインに失敗しました。もう一度お試しください。",
     "microsoftFailed": "Microsoft でのサインインに失敗しました。もう一度お試しください。",
     "generic": "エラーが発生しました。もう一度お試しください。",
     "emailAlreadyInUse": "このメールアドレスはすでに登録されています。",
